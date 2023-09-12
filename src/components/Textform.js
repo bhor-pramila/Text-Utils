@@ -87,19 +87,19 @@ export default function Textform(props) {
         <div className="mb-3">
             <textarea className="form-control" value={text} onChange={handleOnChange} id="mybox" rows="8" style={{backgroundColor: props.mode ==='dark'?'gray':'white', color: props.mode ==='dark'?'white':'black'}} ></textarea>
         </div>
-        <button className="btn btn-secondary btn-sm mx-1" onClick={hadleUpClick}>Convert to UpperCase</button>
-        <button className="btn btn-secondary btn-sm mx-1" onClick={hadleLoClick}>Convert to LowerCase</button>
-        <button className="btn btn-secondary btn-sm mx-1" onClick={hadleCapClick}>Capitalize Text</button>
-        <button className="btn btn-secondary btn-sm mx-1" onClick={hadleDownClick}>Download Text</button>
-        <button className="btn btn-secondary btn-sm mx-1" onClick={handleCopyClick}>Copy to Clipboard</button>
+        <button disabled={text.length===0} className="btn btn-secondary btn-sm mx-1 my-1" onClick={hadleUpClick}>Convert to UpperCase</button>
+        <button disabled={text.length===0} className="btn btn-secondary btn-sm mx-1 my-1" onClick={hadleLoClick}>Convert to LowerCase</button>
+        <button disabled={text.length===0} className="btn btn-secondary btn-sm mx-1 my-1" onClick={hadleCapClick}>Capitalize Text</button>
+        <button disabled={text.length===0} className="btn btn-secondary btn-sm mx-1 my-1" onClick={hadleDownClick}>Download Text</button>
+        <button disabled={text.length===0} className="btn btn-secondary btn-sm mx-1 my-1" onClick={handleCopyClick}>Copy to Clipboard</button>
         {copied && <span>Copied!</span>}
-        <button className="btn btn-secondary btn-sm mx-1" onClick={handleExtraSpace}>Remove Extra Spaces</button>
-        <button className="btn btn-secondary btn-sm mx-1" onClick={hadleClClick}>Clear Text</button>
+        <button disabled={text.length===0} className="btn btn-secondary btn-sm mx-1 my-1" onClick={handleExtraSpace}>Remove Extra Spaces</button>
+        <button disabled={text.length===0} className="btn btn-secondary btn-sm mx-1 my-1" onClick={hadleClClick}>Clear Text</button>
     </div>
     <div className="container my-3" style={{color: props.mode ==='dark'?'white':'black'}}>
         <h3>Your text Summary</h3>
-        <p>{text.split(" ").length} words and {text.length} characters</p>
-        <p>{0.008 * text.split(" ").length} Minutes to read</p>
+        <p>{text.split(" ").filter((element)=>{return element.length!==0}).length} words and {text.length} characters</p>
+        <p>{0.008 * text.split(" ").filter((element)=>{return element.length!==0}).length} Minutes to read</p>
         <h3>Preview</h3>
         <p>{text.length>0?text:"Enter something in the above textbox to preview here"}</p>
     </div>
